@@ -9,7 +9,7 @@ output: html_notebook
 #Ladowanie pakietow
 
 library(XLConnect)
-
+library(dplyr)
 
 
 #Ladowanie i porzadkowanie danych
@@ -22,5 +22,58 @@ Dane_wszystko <- Dane_wszystko [-c(1,9)]
 
 Dane_wszystko <- Dane_wszystko [,c(5:7,1:4,8:11)]
 
+```
+
+
+```{r}
+
+#Porzadkowanie poszczegolnych zmiennych 
+
+Kolor         <- Dane_wszystko %>% 
+                  count(Pyt.1) %>%
+                  mutate(procent=Kolor$n/sum(Kolor$n))
+
+Musujace      <- Dane_wszystko %>% 
+                 count(Pyt.2) %>%
+                 mutate(procent=Musujace$n/sum(Musujace$n))
+
+Wytrawnosc    <- Dane_wszystko %>% 
+                 count(Pyt.3) %>%
+                 mutate(procent=Wytrawnosc$n/sum(Wytrawnosc$n))
+
+Plec          <- Dane_wszystko %>% 
+                 count(Pyt.1.1) %>%
+                 mutate(procent=Plec $n/sum(Plec $n))
+
+Zamieszkanie  <- Dane_wszystko %>% 
+                 count(Pyt.2.1) %>%
+                 mutate(procent=Zamieszkanie$n/sum(Zamieszkanie$n))
+
+Wiek          <- Dane_wszystko %>% 
+                 count(Pyt.3.1) %>%
+                 mutate(procent=Wiek $n/sum(Wiek$n))
+
+Zarobki       <- Dane_wszystko %>% 
+                 count(Pyt.4.1) %>%
+                 mutate(procent=Zarobki $n/sum(Zarobki$n))
+
+Sr_wydatki    <- summary(Dane_wszystko$Pyt.4)
+
+Sr_spozycie   <- summary(Dane_wszystko$Pyt.5)
+
+#Usuniecie NA z Pyt 6 i 7
+
+Ulubione_wyd_dane <- Dane_wszystko$Pyt.6
+Ulubione_wyd_dane$.[Ulubione_wyd_dane$. %in% c("NA")] <- NA
+Ulubione_wyd_dane  <- Ulubione_wyd_dane [!is.na(Ulubione_wyd_dane)] 
+Ulubione_wyd_dane <- as.numeric(as.character(Ulubione_wyd_dane))
+Ulubione_wyd_summ <- summary(Ulubione_wyd_dane)
+
+
+  
+Ulubione_nad  <- summary(Dane_wszystko$Pyt.7)
+  
+
 
 ```
+

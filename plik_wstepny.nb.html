@@ -178,17 +178,38 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRGFuZV93c3p5c3RrbyA8LSByZWFkV29ya3NoZWV0KFwiQXJrdXN6XCIsIHNoZWV0PTEpXG5cbmBgYCJ9 -->
-<pre class="r"><code>Dane_wszystko &lt;- readWorksheet(&quot;Arkusz&quot;, sheet=1)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcblxuYGBgIn0= -->
+<pre class="r"><code>library(dplyr)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gKGZ1bmN0aW9uIChjbGFzc2VzLCBmZGVmLCBtdGFibGUpICA6IFxuICB1bmFibGUgdG8gZmluZCBhbiBpbmhlcml0ZWQgbWV0aG9kIGZvciBmdW5jdGlvbiDigJhyZWFkV29ya3NoZWV04oCZIGZvciBzaWduYXR1cmUg4oCYXCJjaGFyYWN0ZXJcIiwgXCJudW1lcmljXCLigJlcbiJ9 -->
-<pre><code>Error in (function (classes, fdef, mtable)  : 
-  unable to find an inherited method for function ‘readWorksheet’ for signature ‘&quot;character&quot;, &quot;numeric&quot;’</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiXG5Eb+aIvOO4s+aIvOO4uWN6YW5pZSBwYWtpZXR1OiDjpLzjuLFkcGx5cuOkvOO4slxuXG5OYXN05pS847mhcHVq5oi847i5Y2Ugb2JpZWt0eSB6b3N0YeaIvOO4s3kgemFrcnl0ZSB6IOOkvOO4sXBhY2thZ2U6c3RhdHPjpLzjuLI6XG5cbiAgICBmaWx0ZXIsIGxhZ1xuXG5OYXN05pS847mhcHVq5oi847i5Y2Ugb2JpZWt0eSB6b3N0YeaIvOO4s3kgemFrcnl0ZSB6IOOkvOO4sXBhY2thZ2U6YmFzZeOkvOO4sjpcblxuICAgIGludGVyc2VjdCwgc2V0ZGlmZiwgc2V0ZXF1YWwsIHVuaW9uXG4ifQ== -->
+<pre><code>
+Do戼㸳戼㸹czanie pakietu: 㤼㸱dplyr㤼㸲
+
+Nast攼㹡puj戼㸹ce obiekty zosta戼㸳y zakryte z 㤼㸱package:stats㤼㸲:
+
+    filter, lag
+
+Nast攼㹡puj戼㸹ce obiekty zosta戼㸳y zakryte z 㤼㸱package:base㤼㸲:
+
+    intersect, setdiff, setequal, union</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVWx1YmlvbmVfd3lkX2RhbmUkLiA8LSBhcy5udW1lcmljKGFzLmNoYXJhY3RlcihVbHViaW9uZV93eWRfZGFuZSQuKSlcblxuYGBgIn0= -->
+<pre class="r"><code>Ulubione_wyd_dane$. &lt;- as.numeric(as.character(Ulubione_wyd_dane$.))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gVWx1YmlvbmVfd3lkX2RhbmUkLiA6ICQgb3BlcmF0b3IgaXMgaW52YWxpZCBmb3IgYXRvbWljIHZlY3RvcnNcbiJ9 -->
+<pre><code>Error in Ulubione_wyd_dane$. : $ operator is invalid for atomic vectors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIldpbm8gU2VtLiBsZXRuaSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KYGBge3J9DQoNCiNMYWRvd2FuaWUgcGFraWV0b3cNCg0KbGlicmFyeShYTENvbm5lY3QpDQoNCg0KDQojTGFkb3dhbmllIGkgcG9yemFka293YW5pZSBkYW55Y2gNCg0KQXJrdXN6IDwtIGxvYWRXb3JrYm9vaygiYW5raWV0eV93aW5vLnhsc3giKQ0KDQpEYW5lX3dzenlzdGtvIDwtIHJlYWRXb3Jrc2hlZXQoQXJrdXN6LCBzaGVldD0xKQ0KDQpEYW5lX3dzenlzdGtvIDwtIERhbmVfd3N6eXN0a28gWy1jKDEsOSldDQoNCkRhbmVfd3N6eXN0a28gPC0gRGFuZV93c3p5c3RrbyBbLGMoNTo3LDE6NCw4OjExKV0NCg0KDQpgYGANCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldpbm8gU2VtLiBsZXRuaSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KYGBge3J9DQoNCiNMYWRvd2FuaWUgcGFraWV0b3cNCg0KbGlicmFyeShYTENvbm5lY3QpDQpsaWJyYXJ5KGRwbHlyKQ0KDQoNCiNMYWRvd2FuaWUgaSBwb3J6YWRrb3dhbmllIGRhbnljaA0KDQpBcmt1c3ogPC0gbG9hZFdvcmtib29rKCJhbmtpZXR5X3dpbm8ueGxzeCIpDQoNCkRhbmVfd3N6eXN0a28gPC0gcmVhZFdvcmtzaGVldChBcmt1c3osIHNoZWV0PTEpDQoNCkRhbmVfd3N6eXN0a28gPC0gRGFuZV93c3p5c3RrbyBbLWMoMSw5KV0NCg0KRGFuZV93c3p5c3RrbyA8LSBEYW5lX3dzenlzdGtvIFssYyg1OjcsMTo0LDg6MTEpXQ0KDQpgYGANCg0KDQpgYGB7cn0NCg0KI1BvcnphZGtvd2FuaWUgcG9zemN6ZWdvbG55Y2ggem1pZW5ueWNoIA0KDQpLb2xvciAgICAgICAgIDwtIERhbmVfd3N6eXN0a28gJT4lIA0KICAgICAgICAgICAgICAgICAgY291bnQoUHl0LjEpICU+JQ0KICAgICAgICAgICAgICAgICAgbXV0YXRlKHByb2NlbnQ9S29sb3Ikbi9zdW0oS29sb3IkbikpDQoNCk11c3VqYWNlICAgICAgPC0gRGFuZV93c3p5c3RrbyAlPiUgDQogICAgICAgICAgICAgICAgIGNvdW50KFB5dC4yKSAlPiUNCiAgICAgICAgICAgICAgICAgbXV0YXRlKHByb2NlbnQ9TXVzdWphY2Ukbi9zdW0oTXVzdWphY2UkbikpDQoNCld5dHJhd25vc2MgICAgPC0gRGFuZV93c3p5c3RrbyAlPiUgDQogICAgICAgICAgICAgICAgIGNvdW50KFB5dC4zKSAlPiUNCiAgICAgICAgICAgICAgICAgbXV0YXRlKHByb2NlbnQ9V3l0cmF3bm9zYyRuL3N1bShXeXRyYXdub3NjJG4pKQ0KDQpQbGVjICAgICAgICAgIDwtIERhbmVfd3N6eXN0a28gJT4lIA0KICAgICAgICAgICAgICAgICBjb3VudChQeXQuMS4xKSAlPiUNCiAgICAgICAgICAgICAgICAgbXV0YXRlKHByb2NlbnQ9UGxlYyAkbi9zdW0oUGxlYyAkbikpDQoNClphbWllc3prYW5pZSAgPC0gRGFuZV93c3p5c3RrbyAlPiUgDQogICAgICAgICAgICAgICAgIGNvdW50KFB5dC4yLjEpICU+JQ0KICAgICAgICAgICAgICAgICBtdXRhdGUocHJvY2VudD1aYW1pZXN6a2FuaWUkbi9zdW0oWmFtaWVzemthbmllJG4pKQ0KDQpXaWVrICAgICAgICAgIDwtIERhbmVfd3N6eXN0a28gJT4lIA0KICAgICAgICAgICAgICAgICBjb3VudChQeXQuMy4xKSAlPiUNCiAgICAgICAgICAgICAgICAgbXV0YXRlKHByb2NlbnQ9V2llayAkbi9zdW0oV2llayRuKSkNCg0KWmFyb2JraSAgICAgICA8LSBEYW5lX3dzenlzdGtvICU+JSANCiAgICAgICAgICAgICAgICAgY291bnQoUHl0LjQuMSkgJT4lDQogICAgICAgICAgICAgICAgIG11dGF0ZShwcm9jZW50PVphcm9ia2kgJG4vc3VtKFphcm9ia2kkbikpDQoNClNyX3d5ZGF0a2kgICAgPC0gc3VtbWFyeShEYW5lX3dzenlzdGtvJFB5dC40KQ0KDQpTcl9zcG96eWNpZSAgIDwtIHN1bW1hcnkoRGFuZV93c3p5c3RrbyRQeXQuNSkNCg0KI1VzdW5pZWNpZSBOQSB6IFB5dCA2IGkgNw0KDQpVbHViaW9uZV93eWRfZGFuZSA8LSBEYW5lX3dzenlzdGtvJFB5dC42DQpVbHViaW9uZV93eWRfZGFuZSQuW1VsdWJpb25lX3d5ZF9kYW5lJC4gJWluJSBjKCJOQSIpXSA8LSBOQQ0KVWx1YmlvbmVfd3lkX2RhbmUgIDwtIFVsdWJpb25lX3d5ZF9kYW5lIFshaXMubmEoVWx1YmlvbmVfd3lkX2RhbmUpXSANClVsdWJpb25lX3d5ZF9kYW5lIDwtIGFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKFVsdWJpb25lX3d5ZF9kYW5lKSkNClVsdWJpb25lX3d5ZF9zdW1tIDwtIHN1bW1hcnkoVWx1YmlvbmVfd3lkX2RhbmUpDQoNCg0KICANClVsdWJpb25lX25hZCAgPC0gc3VtbWFyeShEYW5lX3dzenlzdGtvJFB5dC43KQ0KICANCg0KDQpgYGANCg0K</div>
 
 
 
