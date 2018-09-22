@@ -1,5 +1,3 @@
-# hello-world
-Tutorial repository 
-Bl bla bla
+# Wino - badanie ankietowe
 
-Bla bla bla
+
