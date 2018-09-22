@@ -6,8 +6,21 @@ output: html_notebook
 
 ```{r}
 
+#Ladowanie pakietow
+
+library(XLConnect)
 
 
+
+#Ladowanie i porzadkowanie danych
+
+Arkusz <- loadWorkbook("ankiety_wino.xlsx")
+
+Dane_wszystko <- readWorksheet(Arkusz, sheet=1)
+
+Dane_wszystko <- Dane_wszystko [-c(1,9)]
+
+Dane_wszystko <- Dane_wszystko [,c(5:7,1:4,8:11)]
 
 
 ```
