@@ -10,6 +10,7 @@ output: html_notebook
 
 library(XLConnect)
 library(dplyr)
+library(VIM)
 
 
 #Ladowanie i porzadkowanie danych
@@ -22,6 +23,17 @@ Dane_wszystko <- Dane_wszystko [-c(1,9)]
 
 Dane_wszystko <- Dane_wszystko [,c(5:7,1:4,8:11)]
 
+```
+
+```{r}
+#Imputacja danych 
+
+Po_imputacji_k4 <- kNN(Dane_wszystko, k = 4)
+
+
+Po_imputacji_k1 <- kNN(Dane_wszystko, k = 1)
+
+Por <- Po_imputacji_k1 == Po_imputacji_k4
 ```
 
 
@@ -61,7 +73,7 @@ Sr_wydatki    <- summary(Dane_wszystko$Pyt.4)
 
 Sr_spozycie   <- summary(Dane_wszystko$Pyt.5)
 
-#Usuniecie NA z Pyt 6 i 7
+#Usuniecie NA z Pyt 6 i 7 i zmiana typu na num
 
 Ulubione_wyd_dane <- Dane_wszystko$Pyt.6
 Ulubione_wyd_dane$.[Ulubione_wyd_dane$. %in% c("NA")] <- NA
