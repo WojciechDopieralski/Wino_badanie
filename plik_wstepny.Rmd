@@ -239,3 +239,46 @@ cramer.v(wyt_nie_wyt_df_2)
 
 ```
 
+```{r}
+#5.	Jeżeli ktoś sięga po wino słodkie to jest to wino białe lub różowe, a jeżeli wytrawne to wino czerwone.
+
+tabela_kolor_wytrawnosc <- table(Po_imputacji_k1$Pyt.3,Po_imputacji_k1$Pyt.1)
+
+kolor_wyt_df <- transpose(as.data.frame.matrix(tabela_kolor_wytrawnosc))
+
+#Test chi kwadrat dla nieprzeksztalconej tabeli kontyngencji - uwaga malo obserwacji w sporej czesci kateogrii
+chisq.test(tabela_kolor_wytrawnosc)
+#Test V-kramera - mozliwy blad ze wzgledu na mala ilosc obserwacji
+cramer.v(kolor_wyt_df)
+
+#Stworzenie kategori slodkie (caly czas bedzie wadzic rozowe)
+kolor_wyt_df_2 <-   kolor_wyt_df %>%
+                    mutate(Wyt = V1,
+                           Pol_wyt = V2,
+                           Slod = V3 + V4) %>%
+                    select(-starts_with('V'))
+#test chi i v kram dla tabeli ze zlaczonym slodkim
+chisq.test(kolor_wyt_df_2)
+cramer.v(kolor_wyt_df_2)
+
+#Zlaczenie bialego i rozwego 
+
+czerw_nieczerw <- kolor_wyt_df_2 %>%
+                    rbind("nie_czerw" = kolor_wyt_df_2[1,] + kolor_wyt_df_2[3,])
+
+czerw_nieczerw <- czerw_nieczerw[-c(1,3),]
+
+#Ostateczne testy - podzial na czerwone i inne, dodatkowo wytrawn, pol wytrawne i slodkie 
+chisq.test(czerw_nieczerw)
+cramer.v(czerw_nieczerw)
+
+#Podzial na czerwone i inne + na slodkie i wytrawne (polaczenie kategorii pol)
+czerw_nieczerw_2 <- czerw_nieczerw %>%
+                    mutate (Wytrawne = Wyt + Pol_wyt)
+czerw_nieczerw_2 <- czerw_nieczerw_2[,-c(1,2)]
+
+chisq.test(czerw_nieczerw_2)
+cramer.v(czerw_nieczerw_2)
+
+```
+
