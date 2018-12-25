@@ -12,6 +12,7 @@ library(XLConnect)
 library(dplyr)
 library(VIM)
 library(ggplot2)
+library(questionr)
 
 
 #Ladowanie i porzadkowanie danych
@@ -23,6 +24,42 @@ Dane_wszystko <- readWorksheet(Arkusz, sheet=1)
 Dane_wszystko <- Dane_wszystko [-c(1,9)]
 
 Dane_wszystko <- Dane_wszystko [,c(5:7,1:4,8:11)]
+
+#Lista hipotez i proponowane rozwiazania
+# 1.	Czy osoba młoda zarabiająca bardzo dobrze jest bardziej skłonna pić wina czerwone wytrawne? (Korelacja pomiędzy zarobkami i wiekiem, a wytrawnością kupowanych win i rodzajem wina)
+# 
+# => 
+# 
+# 2.	Czy osoba pijąca mało jest w stanie zapłacić więcej za wino niż osoba, która pije dużo wina [badamy elastyczność cenową konsuemnta]
+# 
+# => Model regresji liniowej log / log -> Zbudować model, potem zweryfikować założenia wizualnie, a potem zweryfikować testami z ekonometrii (lm test – normalne reszty, test durbina Watsona,). Jeżeli zał nie spełnione to użycie odpornych estymatorów zmiennych standardowych (ROBUST standard errors) – pakiet sandwitch
+# 
+# 3.	Czy wzrost wytrawności (od słodkiego do wytrawnego) wpływa na cenę, którą osoba jest stanie wydać na ulubione wino?
+# 
+# => Spróbować dołączyć do modelu z 2 (zrobić wykres rozrzutu, który sprwadzi czy ilość wypitych win rośnie wraz z wytrawnością). Test vif (w pakiecie car). 
+# 
+# 4.	Czy wraz ze wzrostem spożytego wina wzrasta wytrwałość spożywanego wina. 
+# 
+# 
+# 5.	Jeżeli ktoś sięga po wino słodkie to jest to wino białe lub różowe, a jeżeli wytrawne to wino czerwone.
+# 
+# => Testem Chi kwadrat. Analiza korespondencji (wizualizacja tabeli kontyngencji) 
+# 
+# 6.	Jaka jest wytrawność w grupach wiekowych 
+# 
+# => Test Chi kwadrat i miary korelacji (V-Cramera) 
+# 
+# 7.	Czy istnieje korelacja, że im osoba starsza tym więcej wina pije, bądź czy to młodzi dużo kupują 
+# 
+# => Zroibł Box ploty i zrobić test kruskala Wallisa (sprwadzić czy rozkłady są takie same) 
+# 
+# 
+# 
+# => Model regresji logistycznej (wyjaśniamy prawdopobieństwo tego czy ktoś wybiera jakąś kategorię).
+# 
+# Książka: Mikroekonometryczne metody badania preferencji konsumentów z wykorzystaniem programu R
+# Regresja logistyczna wielomianowa ( mlogit lub mnlogit).
+
 
 ```
 
@@ -159,6 +196,14 @@ hist(log(Dane_wszystko$Pyt.7), breaks = 'fd')
 
 
 ```{r}
+#6.	Jaka jest wytrawność w grupach wiekowych - zaleznosc miedzy wytrawnoscia a wiekiem
+
+tabela_wiek_wytrawnosc <- table(Po_imputacji_k1$Pyt.3,Po_imputacji_k1$Pyt.4.1)
+
+count_df <- transpose(as.data.frame.matrix(tabela_wiek_wytrawnosc))
+
+
+
 
 ```
 
