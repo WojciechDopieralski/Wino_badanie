@@ -11,6 +11,7 @@ output: html_notebook
 library(XLConnect)
 library(dplyr)
 library(VIM)
+library(ggplot2)
 
 
 #Ladowanie i porzadkowanie danych
@@ -28,12 +29,31 @@ Dane_wszystko <- Dane_wszystko [,c(5:7,1:4,8:11)]
 ```{r}
 #Imputacja danych 
 
-Po_imputacji_k4 <- kNN(Dane_wszystko, k = 4)
-
-
 Po_imputacji_k1 <- kNN(Dane_wszystko, k = 1)
 
-Por <- Po_imputacji_k1 == Po_imputacji_k4
+
+
+#w przypadku zmiennych ciągłych robi ważone, w przypadku zmiennych jakościowych najcześciej wybierane. 
+#Im więcej sąsiadów tym rozkład może być bardziej wysmukły. 
+
+
+
+#TESTY DR. BERESEWICZA
+plot(Dane_wszystko$Pyt.6, Dane_wszystko$Pyt.7)
+abline(a=0,b=1, col='red')
+
+
+Dane_wszystko <- Dane_wszystko %>% mutate(roznica = Pyt.7 - Pyt.6)
+kruskal.test(roznica~Pyt.4.1, Dane_wszystko)
+boxplot(roznica~Pyt.4.1, Dane_wszystko, ylim = c(-200,200))
+model1 <- lm(roznica ~ factor(Pyt.4.1), Dane_wszystko)
+summary(model1)
+
+
+#Test t srednich 
+# ANOVA dla wiecej srednich
+# Test kruskala walisa, bo nieparametryczny ! 
+
 ```
 
 
@@ -41,17 +61,20 @@ Por <- Po_imputacji_k1 == Po_imputacji_k4
 
 #Porzadkowanie poszczegolnych zmiennych 
 
+aggr(Dane_wszystko) #funkcja do wyrysowania braków danych (w obiekcie zwraca też statystyki opisowe)
+
+
 Kolor         <- Dane_wszystko %>% 
                   count(Pyt.1) %>%
-                  mutate(procent=Kolor$n/sum(Kolor$n))
+                  mutate(procent=n/sum(n))
 
 Musujace      <- Dane_wszystko %>% 
                  count(Pyt.2) %>%
-                 mutate(procent=Musujace$n/sum(Musujace$n))
+                 mutate(procent=n/sum(n))
 
 Wytrawnosc    <- Dane_wszystko %>% 
                  count(Pyt.3) %>%
-                 mutate(procent=Wytrawnosc$n/sum(Wytrawnosc$n))
+                 mutate(procent=n/sum(n))
 
 Plec          <- Dane_wszystko %>% 
                  count(Pyt.1.1) %>%
@@ -59,15 +82,15 @@ Plec          <- Dane_wszystko %>%
 
 Zamieszkanie  <- Dane_wszystko %>% 
                  count(Pyt.2.1) %>%
-                 mutate(procent=Zamieszkanie$n/sum(Zamieszkanie$n))
+                 mutate(procent=n/sum(n))
 
 Wiek          <- Dane_wszystko %>% 
                  count(Pyt.3.1) %>%
-                 mutate(procent=Wiek $n/sum(Wiek$n))
+                 mutate(procent=n/sum(n))
 
 Zarobki       <- Dane_wszystko %>% 
                  count(Pyt.4.1) %>%
-                 mutate(procent=Zarobki $n/sum(Zarobki$n))
+                 mutate(procent=n/sum(n))
 
 Sr_wydatki    <- summary(Dane_wszystko$Pyt.4)
 
@@ -85,7 +108,57 @@ Ulubione_wyd_summ <- summary(Ulubione_wyd_dane)
   
 Ulubione_nad  <- summary(Dane_wszystko$Pyt.7)
   
+hist(log(Dane_wszystko$Pyt.7), breaks = 'fd')
 
+```
+
+
+```{r}
+
+#7.	Czy istnieje korelacja, że im osoba starsza tym więcej wina pije, bądź czy to młodzi dużo kupują 
+
+  #sprawdzenie dla ilosci
+  #Rozklad ilosci pitego wina - bardzo silna asymetria prawostronna, jednakze raczej 1 modalny
+  ggplot(Po_imputacji_k1, aes(x = Pyt.5)) + 
+  geom_density()
+
+  #Rozklad ilosci po uzyciu ln - wyglada calkiem normalnie 
+  ggplot(Po_imputacji_k1, aes(x = log(Pyt.5))) + 
+  geom_density()
+  
+  #Histogram
+  ggplot(Po_imputacji_k1, aes(x = Pyt.5)) + 
+  geom_histogram(binwidth=10)
+ 
+  #normalnosc - H0 o normalnosci odrzucona.
+  shapiro.test(Po_imputacji_k1$Pyt.5)
+  
+  #Sprawdzenie dla wieku
+  #Rozklad wieku, Bi modlany - druga moda w najstarszej grupie wiekowej 
+  ggplot(Po_imputacji_k1, aes(x = Pyt.4.1)) + 
+  geom_density()
+  
+   #Histogram
+  hist(Po_imputacji_k1$Pyt.4.1)
+
+  #normalnosc - H0 o normalnosci odrzucona.
+  shapiro.test(Po_imputacji_k1$Pyt.4.1)
+  
+  
+  boxplot(Pyt.5 ~ Pyt.4.1, data = Po_imputacji_k1)
+  kruskal.test(Pyt.5~Pyt.4.1, Po_imputacji_k1)
+  #Alternatywa: https://pl.wikipedia.org/wiki/Test_Wilcoxona_dla_par_obserwacji  [Podpytaj]
+  
+  
+
+
+```
+
+
+
+
+
+```{r}
 
 ```
 
