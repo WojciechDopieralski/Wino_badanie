@@ -13,6 +13,7 @@ library(dplyr)
 library(VIM)
 library(ggplot2)
 library(questionr)
+library(ca)
 
 
 #Ladowanie i porzadkowanie danych
@@ -279,6 +280,22 @@ czerw_nieczerw_2 <- czerw_nieczerw_2[,-c(1,2)]
 
 chisq.test(czerw_nieczerw_2)
 cramer.v(czerw_nieczerw_2)
+
+#Analiza krespondenci - pakiet ca
+
+fit <- ca(tabela_kolor_wytrawnosc)
+print(fit)
+#narysowanei wykresow do analizy korespondencji! 
+plot(fit)
+plot(fit, mass = TRUE, contrib = "absolute", map =
+   "rowgreen", arrows = c(FALSE, TRUE))
+
+```
+
+```{r}
+
+
+
 
 ```
 
