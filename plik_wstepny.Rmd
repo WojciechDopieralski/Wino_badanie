@@ -238,6 +238,14 @@ chisq.test(wyt_nie_wyt_df_2)
 #Test V kramera dla przeksztalconej tabeli - ostatecznie
 cramer.v(wyt_nie_wyt_df_2)
 
+#Analiza korespondencji 
+ca_anal <- ca(tabela_wiek_wytrawnosc)
+print(ca_anal)
+#Wizualizacja analizy korespondencji
+plot(ca_anal)
+plot(ca_anal, mass = TRUE, contrib = "absolute", map =
+   "rowgreen", arrows = c(FALSE, TRUE))
+
 ```
 
 ```{r}
