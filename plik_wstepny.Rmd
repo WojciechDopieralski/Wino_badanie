@@ -198,12 +198,44 @@ hist(log(Dane_wszystko$Pyt.7), breaks = 'fd')
 ```{r}
 #6.	Jaka jest wytrawność w grupach wiekowych - zaleznosc miedzy wytrawnoscia a wiekiem
 
+#Stworzenie tabeli kontyngencji
 tabela_wiek_wytrawnosc <- table(Po_imputacji_k1$Pyt.3,Po_imputacji_k1$Pyt.4.1)
-
+#Zmiana tabeli kontyngencji w data frame
 count_df <- transpose(as.data.frame.matrix(tabela_wiek_wytrawnosc))
+#Test chi kwadrat dla nieprzeksztalconej tabeli kontyngencji - uwaga malo obserwacji w sporej czesci kateogrii
+chisq.test(tabela_wiek_wytrawnosc)
+#Test V-kramera - mozliwy blad ze wzgledu na mala ilosc obserwacji
+cramer.v(count_df)
 
 
 
+#Stwrzoenie data frame, w ktorym uwzgledniamy wina wytrawne i inne jako osobna kategorie 
+wyt_nie_wyt_df <- count_df %>%
+                  mutate(Wyt = V1,
+                         Nie_wyt = V2 + V3 + V4) %>%
+                  select(-starts_with('V'))
+
+#Test Chi kwadrat dla przeksztalconej tabeli
+chisq.test(wyt_nie_wyt_df)
+
+#Test V kramera dla przeksztalconej tabeli
+cramer.v(wyt_nie_wyt_df)
+
+
+#Polaczenie grupy 4 i 5 (ze wzgledu na male ilosci nie wytrawnych w obu)
+
+wyt_nie_wyt_df_2 <- wyt_nie_wyt_df %>%
+                    rbind("4 i 5" = wyt_nie_wyt_df[4,] + wyt_nie_wyt_df[5,])
+
+#Usuniecie 4 i 5 wiersza          
+wyt_nie_wyt_df_2 <- wyt_nie_wyt_df_2[-c(4:5),]
+
+
+#Test dla ostatecznie poprawionych i zlaczonych danych 
+chisq.test(wyt_nie_wyt_df_2)
+
+#Test V kramera dla przeksztalconej tabeli - ostatecznie
+cramer.v(wyt_nie_wyt_df_2)
 
 ```
 
